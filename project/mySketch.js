@@ -1,6 +1,7 @@
 
  let dabloons = 1000
 
+
 function setup() {
   createCanvas(1080, 1920);
   background(234,244,244);
@@ -14,7 +15,24 @@ function draw() {
   rect (108,108, 864, 216)
   rect (0,1728, 1080, 216)
 
+  //buy/sell buttons:
+  fill(194,247,212)
+  rect (108,324,432,108)
+  fill(247,194,212)
+  rect (540,324,432,108)
+  
+    //        if (108<mouseX<540 ){
+   // //          if (324<mouseY<432){
+   //             if (mouseIsPressed == true){
+   //               rect (1,1,100,100)
+   //               else 
+   //             }s 
+   //           }
+   //         }
 
+   if (108<mouseX<540 ) AND (324<mouseY<432 )AND (mouseIsPressed == true){
+    rect (1,1,100,100)
+   }
   
 
   if (dabloons >= 10000){
@@ -38,3 +56,4 @@ function draw() {
 
 
 }
+
