@@ -30,7 +30,7 @@ function draw() {
    //           }
    //         }
 
-   if (108<mouseX<540 ) AND (324<mouseY<432 )AND (mouseIsPressed == true){
+   if (108<mouseX && mouseX<540  && 324<mouseY<432 && mouseIsPressed == true){
     rect (1,1,100,100)
    }
   
