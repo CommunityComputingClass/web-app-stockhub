@@ -1,5 +1,6 @@
 
  let dabloons = 1000
+ let img;
 
 
 function setup() {
@@ -8,12 +9,30 @@ function setup() {
  
 }
 
+
+function preload() {
+  img = loadImage('placeholder.png');
+}
+
+
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
   fill(1,22,39)
   rect (108,108, 864, 216)
-  rect (0,1728, 1080, 216)
+  
+
+  //place holder image for graph
+  fill(93,115,126)
+  rect (50,450, 980, 480)
+  image(img,160,500)
+
+  //place holder for where stocks will go
+  fill(93,115,126)
+  rect(50,980,980,900)
+
+  fill(234,244,244)
+  rect(108,1030,864,800)
 
   //buy/sell buttons:
   fill(194,247,212)
@@ -29,6 +48,9 @@ function draw() {
    //             }s 
    //           }
    //         }
+
+  
+  
 
    if (108<mouseX && mouseX<540  && 324<mouseY<432 && mouseIsPressed == true){
     rect (1,1,100,100)
