@@ -2,7 +2,7 @@
  let dabloons = 1000
  let img;
  let b1c = 0
- let mode = stocks
+ let mode = 'stocks'
 
 function setup() {
   createCanvas(1080, 1920);
@@ -20,7 +20,7 @@ function preload() {
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
 
-  if (mode == home){
+  if (mode == 'stocks'){
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
   fill(1,22,39)
   rect (108,108, 864, 216)
@@ -92,7 +92,9 @@ function draw() {
 
 
 
-  if (mode == menu)
+  if (mode == 'menu') {
+    
+  }
     //STUFF GOES HERE
 
 }
