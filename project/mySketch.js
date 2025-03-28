@@ -1,13 +1,15 @@
 
  let dabloons = 1000
  let img;
-
+ let b1c = 0
+ let mode = stocks
 
 function setup() {
   createCanvas(1080, 1920);
   background(234,244,244);
  
 }
+
 
 
 function preload() {
@@ -17,6 +19,8 @@ function preload() {
 
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
+
+  if (mode == home){
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
   fill(1,22,39)
   rect (108,108, 864, 216)
@@ -53,8 +57,16 @@ function draw() {
   
 
    if (108<mouseX && mouseX<540  && 324<mouseY<432 && mouseIsPressed == true){
+    fill (200,200,200)
+    rect (1,1,100,100)
+    b1c = 1
+   }
+   else {
+    b1c = 0
+    fill (0,0,0)
     rect (1,1,100,100)
    }
+  
   
 
   if (dabloons >= 10000){
@@ -75,7 +87,13 @@ function draw() {
   textSize(100)
   text("$" + dabloons, 170, 250)
  }
+  }
 
+
+
+
+  if (mode == menu)
+    //STUFF GOES HERE
 
 }
 
