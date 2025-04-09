@@ -1,8 +1,8 @@
 
- let dabloons = 1000
+ let usd = 1000
  let img;
  let b1c = 0
- let mode = 'stocks'
+ let mode = 'menu'
 
 function setup() {
   createCanvas(1080, 1920);
@@ -19,7 +19,7 @@ function preload() {
 
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
-
+  background(234,244,244);
   if (mode == 'stocks'){
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
   fill(1,22,39)
@@ -69,33 +69,60 @@ function draw() {
   
   
 
-  if (dabloons >= 10000){
+  if (usd >= 10000){
   fill(0,255,0)
   triangle(700,190,750,240,650,240)
 
   fill(0,255,0)
   textSize(100)
-  text("$" + dabloons, 170, 250);
+  text("$" + usd, 170, 250);
   }
  
 
- if (dabloons < 10000){
+ if (usd < 10000){
   fill(255,0,0)
   triangle(700,240,750,190,650,190)
 
   fill(255,0,0)
   textSize(100)
-  text("$" + dabloons, 170, 250)
+  text("$" + usd, 170, 250)
  }
+
+ // menu button
+ rect (950, 10,120)
+  if ((950<mouseX && mouseX<1070)  && (240<mouseY && mouseY<360) && mouseIsPressed == true){
+      mode = 'menu'
+
+
+}
+
+
   }
 
-
-
-
   if (mode == 'menu') {
+    //menu bar
+    fill (26,27,65)
+    rect (540,0,540,2100)
+    //test rect
+    fill (54,20,54,)
+    rect (54,20,54,)
+    //tint
+    fill (93,115,126,100)
+    rect (0,0,540,2100)
+    //rects for the menu selection buttons
+    fill (93,115,126,100)
+    rect (550, 240, 520, 120)
+    rect (550, 370, 520, 120)
+    rect (550, 500, 520, 120)
+    rect (550, 630, 520, 120)
+    // stocks button
+
+    if ((550<mouseX && mouseX<1070)  && (240<mouseY && mouseY<360) && mouseIsPressed == true){
+      mode = 'stocks'
+
     
   }
     //STUFF GOES HERE
 
 }
-
+}
