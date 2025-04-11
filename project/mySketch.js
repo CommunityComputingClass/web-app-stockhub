@@ -11,7 +11,8 @@ function setup() {
   background(234,244,244);
 
   button = createButton('settings', 'red');
-  button.position(800, 100);
+  button.style('font-size', '40px');
+  button.position(880, 30);
   button.mousePressed(changeMode)
  
 }
@@ -60,18 +61,6 @@ function draw() {
 
   
   
-
-   if (108<mouseX && mouseX<540 && 950>mouseY && mouseY>850 && mouseIsPressed == true){
-    fill (200,200,200)
-    rect (1,1,100,100)
-    b1c = 1
-   }
-   else {
-    b1c = 0
-    fill (0,0,0)
-    rect (1,1,100,100)
-   }
-  
   
 //function for money if it goes up or down
   if (USD >= 10000){
@@ -89,27 +78,33 @@ function draw() {
 
 
   //timeline text
-  fill(1,22,39)
-  textSize(40)
-  text("  1 DAY |",60,240)
 
-  fill(1,22,39)
-  textSize(40)
-  text("1 WEEK  |",240,240)
+  button = createButton('1 DAY', 'red');
+  button.style('font-size', '30px');
+  button.position(130, 210);
+  
+  button = createButton('1 WEEK ', 'red');
+  button.style('font-size', '30px');
+  button.position(280, 210);
 
-  fill(1,22,39)
-  textSize(40)
-  text("1 MONTH  |",440,240)
+  button = createButton('1 MONTH', 'red');
+  button.style('font-size', '30px');
+  button.position(460, 210);
 
-  fill(1,22,39)
-  textSize(40)
-  text("1 YEAR  |",660,240)
+  button = createButton('1 YEAR ', 'red');
+  button.style('font-size', '30px');
+  button.position(660, 210);
 
-  fill(1,22,39)
-  textSize(40)
-  text("5 YEARS",860,240)
+  button = createButton('5 YEARS', 'red');
+  button.style('font-size', '30px');
+  button.position(830, 210);
+
 }
 
+
+
+      
+    
 
 
 
@@ -149,6 +144,8 @@ function draw() {
     //STUFF GOES HERE
   }
 }
+
+
 
 function changeMode(){
   if (mode == "stocks"){
