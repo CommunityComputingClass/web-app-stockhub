@@ -6,6 +6,19 @@
  let mode = 'stocks'
  let menu
 
+ /// FROM GRAPH
+let data;
+let floww=2
+let flowprev=1
+let names = ["sunflower" , "tulip"]
+let y = 40
+let fakeopen = 100
+let fakeclose = 110
+let fakevolume = 12000
+let stocknum = 12
+let timekey = 1
+
+
 function setup() {
   createCanvas(1080, 1920);
   background(234,244,244);
@@ -14,18 +27,43 @@ function setup() {
   button.style('font-size', '40px');
   button.position(880, 30);
   button.mousePressed(changeMode)
+
+  ///GRAPH
+    console.log(stockData);
+  
+  // Access the "Time Series (5min)" section
+  let timeSeries = stockData["Time Series (5min)"];
+
+  // Loop through the time series data
+  for (let timestamp in timeSeries) {
+    if (timeSeries.hasOwnProperty(timestamp)) {
+      let stockInfo = timeSeries[timestamp]; // This contains the open, high, low, close, volume
+      console.log("Timestamp: " + timestamp); // This is the timestamp
+      console.log("Stock data: ", stockInfo); // This is the stock data at that timestamp
+    }
+  }
  
 }
 
-
-
 function preload() {
-  img = loadImage('placeholder.png');
+
+   stockData = loadJSON('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=HN9TUQGX2II5XAY3');
+  //stockData = loadJSON('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo');
+    img = loadImage('placeholder.png');
 }
+
 
 
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
+  textFont('Arial');
+  fill("white");
+  textSize(14);
+
+  let yOffset = 20;  // Start y-position for displaying data
+  let stockSeries = stockData["Time Series (5min)"];  // Extract the time series data
+
+
 
   if (mode == 'stocks'){
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
@@ -99,6 +137,24 @@ function draw() {
   button.style('font-size', '30px');
   button.position(830, 210);
 
+
+  
+  for (let i = 1; i < stocknum; i += 1) {
+
+    //let timeKey = `2025-05-14 10:${String(i * 5).padStart(2, '0')}:00`;
+    // Ensure stockInfo exists for the given timeKey
+    //let stockInfo = stockSeries[timeKey];
+ 
+  let stockInfo = stockSeries[timeSeries[i]];
+  let openPrice = stockInfo["1. open"];
+  let closePrice = stockInfo["4. close"];
+  let volume = stockInfo["5. volume"];
+
+  stroke('magenta')
+  strokeWeight(80);
+  line(80+(90*i),(((openPrice)-260)*100)-100, 80+(90*i), (((closePrice)-260)*100)+100)
+  }
+
 }
 
 
@@ -158,3 +214,23 @@ mode = "menu"
 
   
 }
+
+function generateTimeSeries(startTime, intervals) {
+  const timeSeries = [];
+  let currentTime = new Date(startTime);
+
+  for (let i = 0; i < intervals; i++) {
+    const timeKey = currentTime.toISOString().slice(0, 19).replace("T", " ");
+    timeSeries.push(timeKey);
+    currentTime.setMinutes(currentTime.getMinutes() + 5);
+  }
+
+  return timeSeries;
+}
+
+// Example usage:
+const startTime = "2025-05-20T10:00:00";
+const intervals = 12;
+const timeSeries = generateTimeSeries(startTime, intervals);
+console.log(timeSeries);
+
