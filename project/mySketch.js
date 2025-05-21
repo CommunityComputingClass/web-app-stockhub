@@ -5,6 +5,13 @@
  let b1c = 0
  let mode = 'stocks'
  let menu
+ let button1
+ let button2
+ let button3
+ let button4
+ let button5
+ let buttonsetting
+ let returnButton
 
  /// FROM GRAPH
 let data;
@@ -21,29 +28,35 @@ let timekey = 1
 
 function setup() {
   createCanvas(1080, 1920);
-  background(234,244,244);
+
+
+  buttonsetting = createButton('settings', 'red');
+  buttonsetting.style('font-size', '40px');
+  buttonsetting.position(880, 30);
+  buttonsetting.mousePressed(changeMode)
+
+  //timeline text
+
+  button1 = createButton('1 DAY', 'red');
+  button1.style('font-size', '30px');
+  button1.position(130, 210);
+  
+  button2 = createButton('1 WEEK ', 'red');
+  button2.style('font-size', '30px');
+  button2.position(280, 210);
+
+  button3 = createButton('1 MONTH', 'red');
+  button3.style('font-size', '30px');
+  button3.position(460, 210);
 
   button = createButton('settings', 'red');
   button.style('font-size', '40px');
   button.position(880, 30);
   button.mousePressed(changeMode)
-
-  ///GRAPH
-    console.log(stockData);
-  
-  // Access the "Time Series (5min)" section
-  let timeSeries = stockData["Time Series (5min)"];
-
-  // Loop through the time series data
-  for (let timestamp in timeSeries) {
-    if (timeSeries.hasOwnProperty(timestamp)) {
-      let stockInfo = timeSeries[timestamp]; // This contains the open, high, low, close, volume
-      console.log("Timestamp: " + timestamp); // This is the timestamp
-      console.log("Stock data: ", stockInfo); // This is the stock data at that timestamp
-    }
-  }
  
 }
+
+
 
 function preload() {
 
@@ -56,14 +69,6 @@ function preload() {
 
 ///COLORS,   (1,22,39)-rich black (26,27,65)- Space Cadet (93,115,126)-payne's gray (234,244,244)-Azure(web) (204,227,222)- Mint Green
 function draw() {
-  textFont('Arial');
-  fill("white");
-  textSize(14);
-
-  let yOffset = 20;  // Start y-position for displaying data
-  let stockSeries = stockData["Time Series (5min)"];  // Extract the time series data
-
-
 
   if (mode == 'stocks'){
   // Nothing here yet – we'll add features step by step //108,54,864,216,1080,
@@ -137,24 +142,6 @@ function draw() {
   button.style('font-size', '30px');
   button.position(830, 210);
 
-
-  
-  for (let i = 1; i < stocknum; i += 1) {
-
-    //let timeKey = `2025-05-14 10:${String(i * 5).padStart(2, '0')}:00`;
-    // Ensure stockInfo exists for the given timeKey
-    //let stockInfo = stockSeries[timeKey];
- 
-  let stockInfo = stockSeries[timeSeries[i]];
-  let openPrice = stockInfo["1. open"];
-  let closePrice = stockInfo["4. close"];
-  let volume = stockInfo["5. volume"];
-
-  stroke('magenta')
-  strokeWeight(80);
-  line(80+(90*i),(((openPrice)-260)*100)-100, 80+(90*i), (((closePrice)-260)*100)+100)
-  }
-
 }
 
 
@@ -175,6 +162,7 @@ function draw() {
 
   if (mode == 'menu') {
     console.log(mode)
+
     //menu bar
     fill (26,27,65)
     rect (540,0,540,2100)
@@ -190,14 +178,14 @@ function draw() {
     rect (550, 370, 520, 120)
     rect (550, 500, 520, 120)
     rect (550, 630, 520, 120)
-    // stocks button
+
+ 
+    
+ 
 
   //   if ((550<mouseX && mouseX<1070)  && (240<mouseY && mouseY<360) && mouseIsPressed == true){
   //     mode = 'stocks'
 
-    
-  // }
-    //STUFF GOES HERE
   }
 }
 
@@ -208,29 +196,12 @@ function changeMode(){
 mode = "menu"
   }
 
-  // if (mode == "menu"){
-  //   mode = "stocks"
-  // }
-
-  
 }
 
-function generateTimeSeries(startTime, intervals) {
-  const timeSeries = [];
-  let currentTime = new Date(startTime);
 
-  for (let i = 0; i < intervals; i++) {
-    const timeKey = currentTime.toISOString().slice(0, 19).replace("T", " ");
-    timeSeries.push(timeKey);
-    currentTime.setMinutes(currentTime.getMinutes() + 5);
+function changeMode2(){
+  if (mode == "menu"){
+mode = "stocks"
   }
 
-  return timeSeries;
 }
-
-// Example usage:
-const startTime = "2025-05-20T10:00:00";
-const intervals = 12;
-const timeSeries = generateTimeSeries(startTime, intervals);
-console.log(timeSeries);
-
