@@ -29,3 +29,39 @@
 </body>
 
 </html>
+
+
+
+
+<style>
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Make lines longer and thicker */
+.hamburger::before,
+.hamburger::after,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 80px;        /* ⬅️ Longer line */
+  height: 12px;        /* ⬅️ Thicker line */
+  background-color: black;
+  transition: 0.3s;
+}
+
+/* Adjust vertical spacing */
+.hamburger::before {
+  top: 20px;
+}
+.hamburger::after {
+  top: 30px;
+}
+.hamburger::after {
+  top: 40px;
+}
+</style>
